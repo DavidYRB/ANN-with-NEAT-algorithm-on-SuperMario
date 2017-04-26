@@ -245,9 +245,9 @@ try
                 % Collect attributes frame by frame
                 if Mario.Pos(1) <  3393
                     if ~isequal(KeyStatus(:,[3,4,5,6]),zeros(1,4))
-                    Mario_Pos_Ind = round(Mario.Pos./16);
-                    Attri_CurF = [CurrentFrameNo, Mario_Pos_Ind, KeyStatus(:,[3,4,5,6])];       % CurrentFrameNo is time in the game
-                    Attri_FBF = [Attri_FBF; Attri_CurF];
+                        Mario_Pos_Ind = round(Mario.Pos./16);
+                        Attri_CurF = [CurrentFrameNo, Mario_Pos_Ind, KeyStatus(:,[3,4,5,6])];       % CurrentFrameNo is time in the game
+                        Attri_FBF = [Attri_FBF; Attri_CurF];
                     end
                 end
                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -312,8 +312,15 @@ try
                     
                     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                     %                 CloseReq = true;
-                elseif Mario.Pos(1) > curStageSize(2) - 400
-                    set(prompt_text_handle,'String', 'No flag. No Castle.','FontSize',16);
+                elseif Mario.Pos(1) > curStageSize(2) - 800
+                    set(prompt_text_handle,'String', {'No flag. No Castle.','','No Peach Princess','','Sorry~'},'FontSize',16);
+                    if Mario.Pos(1) > curStageSize(2)-10
+                        CloseReq = true;
+                        initVariable
+                        kill
+                        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        return
+                    end
                 end
             end
             if CloseReq
