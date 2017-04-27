@@ -1,3 +1,5 @@
-function MarioView = find_MarioView(x,y)
-    MarioView = binary_mapIdx(x-2:x+2,y-2:y+2);
+function MarioView = find_MarioView(x,y,r)
+
+        MarioView = binary_mapIdx(x-r+8:213,y-r+5:y+r);
+
 end
