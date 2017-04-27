@@ -1,21 +1,13 @@
-function expert_architecture(MarioView_mat,A,B)
-% A,B is vectors of the percentage cutting points on x, y axis of the
-% machine vision
-A = [1,3,6];
-B = [1,3,6];
-d = size(size(MarioView_mat),2);
-Vision_Sec = zeros();
-if d ==3
-    for i = 1: (size(A,2)-1)
-        for j = 1:(size(B,2)-1)
-            Vision_Sec(:,:,:,i,j) = MarioView_mat(A(i):A(i+1),B(j):B(j+1),:);
-        end
-    end
-elseif d==2
-    for i = 1: (size(A,2)-1)
-        for j = 1:(size(B,2)-1)
-            Vision_Sec(:,:,i,j) = MarioView_mat(A(i):A(i+1),B(j):B(j+1));
-        end
-    end
-end
+function Vision_Sec = expert_architecture(MarioView_mat,A,B)
+Vision_Sec1 = MarioView_mat(A(1):A(1+1),B(1):B(1+1),:);
+Vision_Sec1 = reshape(Vision_Sec1,)
+Vision_Sec2 = MarioView_mat(A(1):A(1+1),B(2):B(2+1),:);
+
+Vision_Sec3 = MarioView_mat(A(2):A(2+1),B(1):B(1+1),:);
+
+Vision_Sec4 = MarioView_mat(A(2):A(2+1),B(2):B(2+1),:);
+
+Vision_Sec={Vision_Sec1,Vision_Sec2,Vision_Sec3,Vision_Sec4};
+
+
 end

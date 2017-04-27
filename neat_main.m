@@ -1,4 +1,3 @@
-clear;
 tic; % start timing
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% list of parameters
@@ -21,15 +20,15 @@ average_number_hidden_nodes = [];
 max_overall_fitness = [];
 
 %parameters initial population
-population_size = 150;
-number_input_nodes = 2;       % need modifying
-number_output_nodes = 1;      % need modifying
+population_size = 300;
+number_input_nodes = 28;       % need modifying
+number_output_nodes = 7;      % need modifying
 
-vector_connected_input_nodes = [1 2]; 
+% vector_connected_input_nodes = [1 2]; 
 %vector of initially connected input nodes out of complete number of input nodes
 %(if you want to start with a subset and let evolution decide which ones are necessary)
 %for a fully connected initial population, uncomment the following:
-%vector_connected_input_nodes=1:number_input_nodes;
+vector_connected_input_nodes=1:number_input_nodes;
 
 
 %speciation parameters
@@ -159,7 +158,7 @@ while generation<maxgeneration && flag_solution==0
     % IMPORTANT reproduction assumes an (all positive!) evaluation function where a higher value means better fitness 
     % (in other words, the algorithm is geared towards maximizing a fitness function which can only assume values between 0 and +Inf)
     
-    population=xor_experiment_vec(population);
+    population=xor_experiment_vec(NEAT_input,target,population);
     %population=fulladder_experiment(population);
     
 %     generation

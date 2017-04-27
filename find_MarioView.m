@@ -7,7 +7,7 @@ if exist('binary_mapIdx.mat','file')
     load('binary_mapIdx.mat');
 end
 for i = 1: size(X,1)
-    CurrentView = binary_mapIdx(X(i)-r+8:X(i)+r+8-1,Y(i)-r+5:Y(i)+r+5-1);
+     CurrentView = binary_mapIdx(Y(i)-r+10:Y(i)+r+10-1,X(i)-r+8:X(i)+r+8-1);
     if vectorize == 0 % keep the vision as matrix
         MarioView(:,:,i) = CurrentView;
     elseif vectorize == 1 % transform the vision matrices into vectors

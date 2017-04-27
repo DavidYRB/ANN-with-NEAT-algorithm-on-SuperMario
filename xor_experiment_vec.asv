@@ -1,5 +1,9 @@
 %%%%%%%%%%%%%%%% XOR experiment file  (contains experiment, receives genom, decodes it, evaluates it and returns raw fitnesses) (function)
 
+%% Neuro_Evolution_of_Augmenting_Topologies - NEAT 
+%% developed by Kenneth Stanley (kstanley@cs.utexas.edu) & Risto Miikkulainen (risto@cs.utexas.edu)
+%% Coding by Christian Mayr (matlab_neat@web.de)
+
 function population_plus_fitnesses=xor_experiment_vec(input_pattern,output_pattern,population)
 population_plus_fitnesses=population;
 no_change_threshold=1e-3; %threshold to judge if state of a node has changed significantly since last iteration
@@ -14,9 +18,9 @@ for index_individual=1:number_individuals
    for index_pattern=1:4
       % the following code assumes node 1 and 2 inputs, node 3 bias, node 4 output, rest arbitrary (if existent, will be hidden nodes)
       %set node output states for first timestep (depending on input states)
-      population(index_individual).nodegenes(4,29)=1; %bias node output state set to 1
+      population(index_individual).nodegenes(4,3)=1; %bias node output state set to 1
       population(index_individual).nodegenes(4,1:28)=input_pattern(index_pattern,:); %node output states of the two input nodes are consecutively set to the XOR input pattern  
-      population(index_individual).nodegenes(4,30:number_nodes)=0.5;
+      population(index_individual).nodegenes(4,4:number_nodes)=0.5;
       no_change_count=0;     
       index_loop=0;
       while (no_change_count<number_nodes) && index_loop<3*number_connections
@@ -52,8 +56,8 @@ for index_individual=1:number_individuals
       individual_fitness=individual_fitness+abs(output_pattern(index_pattern,1)-population(index_individual).nodegenes(4,4)); 
    end
    population_plus_fitnesses(index_individual).fitness=(4-individual_fitness)^2; %Fitness function as defined by Kenneth Stanley    
-%    if sum(abs(round(output)-output_pattern))==0      
-%       population_plus_fitnesses(index_individual).fitness=16;
-% %       output
-%    end
+   if sum(abs(round(output)-output_pattern))==0      
+      population_plus_fitnesses(index_individual).fitness=1000;
+%       output
+   end
 end
