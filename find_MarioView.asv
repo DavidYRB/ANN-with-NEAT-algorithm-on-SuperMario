@@ -6,12 +6,14 @@ MarioView = [];
 if exist('binary_mapIdx.mat','file')
     load('binary_mapIdx.mat');
 end
-for i = 1: size(X,1)
-    CurrentView = binary_mapIdx(X(i)-r+8:X(i)+r+8-1,Y(i)-r+5:Y(i)+r+5-1);
+for i = size(X,1)
     if vectorize == 0 % keep the vision as matrix
-        MarioView(:,:,i) = CurrentView;
+        MarioView(:,:,i) = binary_mapIdx(X(i)-r+8:X(i)+r+8-1,Y(i)-r+5:Y(i)+r+5-1);
     elseif vectorize == 1 % transform the vision matrices into vectors
-        MarioView(i,:) = reshape(CurrentView',1,4*r^2);
+        for k = 2*r
+        MarioView(:,:,i) = binary_mapIdx(X(i)-r+8:X(i)+r+8-1,Y(i)-r+5:Y(i)+r+5-1);
     end
+    
+    MarioView =
 end
 end
